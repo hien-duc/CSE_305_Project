@@ -4,19 +4,22 @@
 public class Payment {
 
   private double money;
-  private boolean insurance;
+  private String insurance;
   private String method;
   String temp;
 
-  public Payment(double money, boolean insurance, String method) {
-    this.money = money;
+  public Payment(String money, String insurance, String method) {
+    this.money = Double.parseDouble(money);
     this.insurance = insurance;
     this.method = method;
   }
 
+  public Payment() {
+  }
+
   public double calculateBill() {
     double bill = 0;
-    if (insurance) {
+    if (insurance.equals("true")) {
       bill = money * 0.30;
     } else {
       bill = money;
@@ -44,14 +47,6 @@ public class Payment {
     this.money = money;
   }
 
-  public boolean isInsurance() {
-    return insurance;
-  }
-
-  public void setInsurance(boolean insurance) {
-    this.insurance = insurance;
-  }
-
   public String getMethod() {
     return method;
   }
@@ -66,5 +61,13 @@ public class Payment {
 
   public void setTemp(String temp) {
     this.temp = temp;
+  }
+
+  public String getInsurance() {
+    return insurance;
+  }
+
+  public void setInsurance(String insurance) {
+    this.insurance = insurance;
   }
 }
