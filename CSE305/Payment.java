@@ -1,4 +1,4 @@
-package Payment;
+
 public class Payment {
 
   private double money;

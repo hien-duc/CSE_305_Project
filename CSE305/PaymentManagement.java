@@ -1,7 +1,5 @@
-package Payment;
 
 import java.util.ArrayList;
-import DAO.PaymentDAO;
 
 public class PaymentManagement {
 	// Data members
