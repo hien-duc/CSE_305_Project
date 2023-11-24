@@ -1,23 +1,27 @@
-/**
- * Payment
- */
+package Payment;
 public class Payment {
 
   private double money;
-  private boolean insurance;
+  private String insurance;
   private String method;
-  String temp;
+  private String date;
+  private String time;
 
-  public Payment(double money, boolean insurance, String method) {
-    this.money = money;
+  public Payment(String money, String insurance, String method, String date, String time) {
+    this.money = Double.parseDouble(money);
     this.insurance = insurance;
     this.method = method;
+    this.date = date;
+    this.time = time;
+  }
+
+  public Payment() {
   }
 
   public double calculateBill() {
     double bill = 0;
-    if (insurance) {
-      bill = money * 0.30;
+    if (insurance.equals("true")) {
+      bill = money * 0.3;
     } else {
       bill = money;
     }
@@ -44,14 +48,6 @@ public class Payment {
     this.money = money;
   }
 
-  public boolean isInsurance() {
-    return insurance;
-  }
-
-  public void setInsurance(boolean insurance) {
-    this.insurance = insurance;
-  }
-
   public String getMethod() {
     return method;
   }
@@ -60,11 +56,27 @@ public class Payment {
     this.method = method;
   }
 
-  public String getTemp() {
-    return temp;
+  public String getInsurance() {
+    return insurance;
   }
 
-  public void setTemp(String temp) {
-    this.temp = temp;
+  public void setInsurance(String insurance) {
+    this.insurance = insurance;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public String getTime() {
+    return time;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
   }
 }
