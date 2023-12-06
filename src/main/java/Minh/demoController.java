@@ -52,7 +52,7 @@ public class demoController {
                 "securePassword" // Password
         );
 
-        Controller controller = new Controller(modelPatient, viewPatient);
+        FormController controller = new FormController(modelPatient, viewPatient);
         controller.initActionPatient();
 
         // Controller controller = new Controller(modelDoctor, viewDoctor);

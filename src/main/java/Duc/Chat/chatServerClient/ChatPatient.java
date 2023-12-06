@@ -9,6 +9,8 @@ import Duc.Chat.chatUI.ChatDialogPatient;
 public class ChatPatient {
 
   public static void main(String[] args) {
+    ChatDialogPatient chatDialogPatient = new ChatDialogPatient(new Frame(), true);
+    chatDialogPatient.setVisible(true);
     try (Socket socket = new Socket("localhost", 12345)) {
       System.out.println("Connected to the server.");
       PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -32,7 +34,6 @@ public class ChatPatient {
       receiveThread.start();
 
       while (true) {
-        ChatDialogPatient chatDialogPatient = new ChatDialogPatient(new Frame(), true);
         String userInput = chatDialogPatient.getChatArea().getText();
         out.println(userName + ": " + userInput); // Send the user's name along with the message
       }

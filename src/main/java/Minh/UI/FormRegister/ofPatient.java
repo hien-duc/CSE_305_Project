@@ -1,5 +1,6 @@
 package Minh.UI.FormRegister;
 
+import javax.swing.ButtonModel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 

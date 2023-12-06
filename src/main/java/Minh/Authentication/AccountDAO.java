@@ -13,13 +13,10 @@ import Doctor.Doctor;
 import Patient.Patient;
 
 public class AccountDAO {
-    protected String rootPath = System.getProperty("user.dir");
-    protected String folderPath = rootPath + "\\Backup";
-    protected String patientPath = folderPath + "\\" + "Patient Account.csv";
-    protected String doctorPath = folderPath + "\\" + "Doctor Account.csv";
-
-    protected ArrayList<Patient> patientList = new ArrayList<Patient>();
-    protected ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
+    protected static String rootPath = System.getProperty("user.dir");
+    protected static String folderPath = rootPath + "\\Backup";
+    protected static String patientPath = folderPath + "\\" + "Patient Account.csv";
+    protected static String doctorPath = folderPath + "\\" + "Doctor Account.csv";
 
     public AccountDAO() {
         File folder = new File(folderPath);
@@ -43,7 +40,7 @@ public class AccountDAO {
         }
     }
 
-    public ArrayList<Patient> restoreAccountPatient() {
+    public static ArrayList<Patient> restoreAccountPatient() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         ArrayList<Patient> accountData = null;
@@ -67,7 +64,7 @@ public class AccountDAO {
         return accountData;
     }
 
-    public void saveAccountPatient(ArrayList<Patient> list) {
+    public static void saveAccountPatient(ArrayList<Patient> list) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -86,7 +83,7 @@ public class AccountDAO {
         }
     }
 
-    public ArrayList<Doctor> restoreAccountDoctor() {
+    public static ArrayList<Doctor> restoreAccountDoctor() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         ArrayList<Doctor> accountData = null;
@@ -110,7 +107,7 @@ public class AccountDAO {
         return accountData;
     }
 
-    public void saveAccountDoctor(ArrayList<Doctor> list) {
+    public static void saveAccountDoctor(ArrayList<Doctor> list) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -129,11 +126,4 @@ public class AccountDAO {
         }
     }
 
-    public ArrayList<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public ArrayList<Doctor> getDoctorList() {
-        return doctorList;
-    }
 }
