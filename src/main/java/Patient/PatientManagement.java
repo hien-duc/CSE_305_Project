@@ -1,21 +1,22 @@
 package Patient;
+
 import DAO.PatientDAO;
 
 import java.util.ArrayList;
 
 public class PatientManagement {
 
-    //Data members
+    // Data members
     private PatientDAO patientDao = new PatientDAO();
-    private ArrayList<Patient> listPatient = patientDao.restoreDataFromChar();
+    private ArrayList<Patient> listPatient = new ArrayList<Patient>();
     private int numOfPatient = listPatient.size();
 
-    //Constructors
+    // Constructors
     public PatientManagement() {
-
+        listPatient = patientDao.restoreDataFromChar();
     }
 
-    //Methods
+    // Methods
     public ArrayList<Patient> getListPatient() {
         return listPatient;
     }
@@ -55,5 +56,5 @@ public class PatientManagement {
             return false;
         }
     }
-    
+
 }

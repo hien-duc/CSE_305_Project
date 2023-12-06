@@ -4,7 +4,7 @@
  */
 package PatientForm;
 
-import PateintMain.Main;
+import PateintMain.PatientMain;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Patient_FormChat extends javax.swing.JPanel {
 
     // Data members
 
-    private Main main;
+    private PatientMain main;
 
     public Patient_FormChat() {
         initComponents();
