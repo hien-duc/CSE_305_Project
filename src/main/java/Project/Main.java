@@ -1,6 +1,5 @@
 package Project;
 
-
 import Duc.Payment.Payment;
 import Duc.Payment.PaymentDAO;
 import Duc.Payment.PaymentManager;
@@ -12,7 +11,7 @@ public class Main {
 		PaymentDAO paymentDAO = new PaymentDAO();
 		PaymentManager paymentManager = new PaymentManager();
 		Payment payment = new Payment("Daniel Reed", "2800", "Rental Insurance", "PayPal",
-        "2023-12-15", "11:45", "Stomach Flu", "Rest and Fluids", "Medical Evaluation");
+				"2023-12-15", "11:55", "Stomach Flu", "Rest and Fluids", "Medical Evaluation");
 		paymentManager.addPayment(payment);
 		paymentDAO.savePayment(paymentManager.getListPayment());
 		System.out.println(paymentManager.getListPayment().get(0).getInsurance());

@@ -1,5 +1,7 @@
 package DoctorComponent;
 
+import DAO.DoctorDAO;
+import Doctor.DoctorManagement;
 import DoctorModel.DoctorModel_Menu;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -12,9 +14,14 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.text.GapContent;
 import DoctorEvent.DoctorEventMenuSelected;
+import java.util.ArrayList;
 
 public class DoctorMenu extends javax.swing.JPanel {
 
+    DAO.DoctorDAO doctorDao = new DoctorDAO();
+    Doctor.DoctorManagement doctormanage = new DoctorManagement();
+    ArrayList<Doctor.Doctor> listDoctor = doctorDao.restoreDataFromChar();
+    Doctor.Doctor doctor;
     //Data members
     private int x;
     private int y;
@@ -38,11 +45,16 @@ public class DoctorMenu extends javax.swing.JPanel {
         doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-dashboard-24", "Dashboard", DoctorModel_Menu.MenuType.MENU));
         doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-account-24", "Account", DoctorModel_Menu.MenuType.MENU));
         doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-person-calendar-24", "Appointment", DoctorModel_Menu.MenuType.MENU));
-        doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-activity-history-24", "History", DoctorModel_Menu.MenuType.MENU));     
+        doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-activity-history-24", "History", DoctorModel_Menu.MenuType.MENU));
         doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
         doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
         doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
         doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
+        doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
+        doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
+        doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
+        doctorList_Menu1.addItem(new DoctorModel_Menu("", " ", DoctorModel_Menu.MenuType.EMPTY));
+
         doctorList_Menu1.addItem(new DoctorModel_Menu("icons8-open-pane-24", "Log-out", DoctorModel_Menu.MenuType.MENU));
 
     }
@@ -65,7 +77,7 @@ public class DoctorMenu extends javax.swing.JPanel {
         PatientpanelMoving = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblDoctorUserName = new javax.swing.JLabel();
         doctorList_Menu1 = new DoctorSwing.DoctorList_Menu<>();
 
         setPreferredSize(new java.awt.Dimension(258, 467));
@@ -88,23 +100,23 @@ public class DoctorMenu extends javax.swing.JPanel {
         jLabel3.setText("Doctor_User");
 
         jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(("src\\main\\java\\PateintIcon\\user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PateintIcon/user.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ABC_HMG");
+        lblDoctorUserName.setFont(new java.awt.Font("Segoe UI Symbol", 1, 18)); // NOI18N
+        lblDoctorUserName.setForeground(new java.awt.Color(255, 255, 255));
+        lblDoctorUserName.setText("OMHS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblDoctorUserName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PatientpanelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -120,7 +132,7 @@ public class DoctorMenu extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDoctorUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PatientpanelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)))
@@ -149,11 +161,16 @@ public class DoctorMenu extends javax.swing.JPanel {
         });
 
     }
+
+    public void fillData() {
+        lblDoctorUserName.setText(this.doctor.getName());
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PatientpanelMoving;
     private DoctorSwing.DoctorList_Menu<String> doctorList_Menu1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblDoctorUserName;
     // End of variables declaration//GEN-END:variables
 }

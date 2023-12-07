@@ -4,6 +4,8 @@
  */
 package PatientForm;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
 /**
  *
  * @author My PC
@@ -15,6 +17,7 @@ public class Patient_FormDashboard extends javax.swing.JPanel {
      */
     public Patient_FormDashboard() {
         initComponents();
+        FlatMacLightLaf.setup();
     }
 
     /**

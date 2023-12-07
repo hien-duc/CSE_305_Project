@@ -8,7 +8,7 @@ import Project.User;
 
 public class Doctor extends User implements Serializable{
 
-    //Data members
+  //Data members
     protected String age;
     protected String qualification;
     protected String major;
@@ -136,5 +136,6 @@ public class Doctor extends User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 }

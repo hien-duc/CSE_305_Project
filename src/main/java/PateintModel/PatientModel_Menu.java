@@ -5,29 +5,29 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class PatientModel_Menu {
-    // Data members
+    //Data members
     protected String icon;
     protected String name;
     protected MenuType type;
-
-    // Constructors
-    public PatientModel_Menu() {
-
+    
+    //Constructors
+    public PatientModel_Menu(){
+        
     }
-
     public PatientModel_Menu(String icon, String name, MenuType type) {
         this.icon = icon;
         this.name = name;
         this.type = type;
     }
-
-    // Methods
+    
+    
+    //Methods
     public static enum MenuType {
         TITLE, MENU, EMPTY
     }
-
-    public Icon toIcon() {
-        return new ImageIcon(("src\\main\\java\\PateintIcon\\" + icon + ".png"));
+    
+    public Icon toIcon(){
+        return new ImageIcon(getClass().getResource("/PateintIcon/" + icon + ".png"));
     }
 
     public String getIcon() {
@@ -53,5 +53,5 @@ public class PatientModel_Menu {
     public void setType(MenuType type) {
         this.type = type;
     }
-
+    
 }

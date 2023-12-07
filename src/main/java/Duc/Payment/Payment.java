@@ -8,11 +8,13 @@ public class Payment implements Serializable {
   private double money;
   private String insurance;
   private String method;
-  private String illness;
-  private String medication;
-  private String reports;
   private String date;
   private String time;
+  private String illness;
+
+  private String medication;
+  private String reports;
+  private String isPay;
 
   public Payment(String userName, String money, String insurance, String method, String date, String time,
       String illness, String medication, String reports) {
@@ -26,6 +28,21 @@ public class Payment implements Serializable {
     this.illness = illness;
     this.medication = medication;
     this.reports = reports;
+  }
+
+  public Payment(String userName, String money, String insurance, String method, String date, String time,
+      String illness, String medication, String reports, String isPay) {
+
+    this.username = userName;
+    this.money = Double.parseDouble(money);
+    this.insurance = insurance;
+    this.method = method;
+    this.date = date;
+    this.time = time;
+    this.illness = illness;
+    this.medication = medication;
+    this.reports = reports;
+    this.isPay = isPay;
   }
 
   public double calculateInsurance() {
@@ -72,14 +89,6 @@ public class Payment implements Serializable {
     this.date = date;
   }
 
-  public String getTime() {
-    return time;
-  }
-
-  public void setTime(String time) {
-    this.time = time;
-  }
-
   public String getUsername() {
     return username;
   }
@@ -110,5 +119,21 @@ public class Payment implements Serializable {
 
   public void setReports(String reports) {
     this.reports = reports;
+  }
+
+  public String getTime() {
+    return time;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+  public String getIsPay() {
+    return isPay;
+  }
+
+  public void setIsPay(String isPay) {
+    this.isPay = isPay;
   }
 }

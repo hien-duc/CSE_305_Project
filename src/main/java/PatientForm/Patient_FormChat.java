@@ -1,23 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package PatientForm;
 
-import PateintMain.Main;
+import Booking.Booking;
+import Booking.BookingManage;
+import DAO.BookingDAO;
+import DAO.DoctorDAO;
+import DAO.PatientDAO;
+import Doctor.Doctor;
+import Doctor.DoctorManagement;
+import Patient.Patient;
+import Patient.PatientManagement;
+import java.util.ArrayList;
 
-/**
- *
- * @author My PC
- */
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
 public class Patient_FormChat extends javax.swing.JPanel {
 
-    // Data members
-
-    private Main main;
+    private Booking booking = new Booking();
+    private BookingDAO bookingDao = new BookingDAO();
+    private BookingManage bookingManage = new BookingManage();
+    private ArrayList<Booking> listBooking = bookingDao.restoreDataFromChar();
+    private PatientDAO patientDao = new PatientDAO();
+    private PatientManagement patientManager = new PatientManagement();
+    private ArrayList<Patient> listPatient = patientDao.restoreDataFromChar();
+    private Patient patient;
+    private DoctorDAO doctorDao = new DoctorDAO();
+    private DoctorManagement doctorManagement = new DoctorManagement();
+    private ArrayList<Doctor> listDoctor;
 
     public Patient_FormChat() {
         initComponents();
+        bookingManage.setListBooking(bookingDao.restoreDataFromChar());
+        patient = patientDao.restoreDataFromChar().get(0);
+        patientManager.setListPatient(patientDao.restoreDataFromChar());
+        listDoctor = doctorDao.restoreDataFromChar();
+        showDoctorRegis();
+        FlatMacLightLaf.setup();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -36,24 +54,20 @@ public class Patient_FormChat extends javax.swing.JPanel {
 
         pateintBorderPanel1.setBackground(new java.awt.Color(51, 51, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/PateintIcon/icons8-doctor-96.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PateintIcon/icons8-doctor-96.png"))); // NOI18N
 
         lblPatientDoctorNameComfirm.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblPatientDoctorNameComfirm.setForeground(new java.awt.Color(0, 0, 0));
         lblPatientDoctorNameComfirm.setText("Dr. John Doe");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setIcon(new javax.swing.ImageIcon("/PateintIcon/icons8-clock-24.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PateintIcon/icons8-clock-24.png"))); // NOI18N
         jLabel3.setText("8 am to 6 pm");
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("SEND MESSAGE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pateintBorderPanel1Layout = new javax.swing.GroupLayout(pateintBorderPanel1);
         pateintBorderPanel1.setLayout(pateintBorderPanel1Layout);
@@ -131,9 +145,17 @@ public class Patient_FormChat extends javax.swing.JPanel {
                                 .addContainerGap()));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-
-    }// GEN-LAST:event_jButton1ActionPerformed
+    public void showDoctorRegis() {
+        listBooking = bookingDao.restoreDataFromChar();
+        for (int i = 0; i < listBooking.size(); i++) {
+            if (listBooking.get(i).getPatientName().equals(patient.getName())) {
+                Doctor doctorReg = doctorManagement.searchByName(listBooking.get(i).getDoctor().getName());
+                System.out.println(doctorReg.getName());
+                lblPatientDoctorNameComfirm.setText(doctorReg.getName());
+                return;
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -4,16 +4,21 @@
  */
 package PateintMain;
 
+
+import DAO.PatientDAO;
 import PateintEvent.PateintEventMenuSelected;
+import Patient.Patient;
+import Patient.PatientManagement;
 import PatientForm.Patient_FormAccount;
 import PatientForm.Patient_FormAppointment;
 import PatientForm.Patient_FormChat;
-import PatientForm.Patient_FormDashboard;
 import PatientForm.Patient_FormHistory;
 import PatientForm.Patient_FormHome;
-import PatientForm.Patient_FormLogOut;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JComponent;
+
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 /**
  *
@@ -25,12 +30,19 @@ public class Main extends javax.swing.JFrame {
     private Patient_FormHome patient_FormHome;
     private Patient_FormAccount patient_FormAccount;
     private Patient_FormAppointment patient_FormAppointment;
-    private Patient_FormDashboard patient_FormDashboard;
     private Patient_FormHistory patient_FormHistory;
-    private Patient_FormLogOut patient_FormLogOut;
     private Patient_FormChat patient_FormChat;
 
+    //Tuyết test Patient
+//    
+    private Patient personal;
+
     public Main() {
+//        accountManager = accountDao.restoreContractList();
+//        personal = accountManager.
+        //Tuyết test
+        
+        
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
 
@@ -38,9 +50,7 @@ public class Main extends javax.swing.JFrame {
         patient_FormHome = new Patient_FormHome();
         patient_FormAccount = new Patient_FormAccount();
         patient_FormAppointment = new Patient_FormAppointment();
-        patient_FormDashboard = new Patient_FormDashboard();
         patient_FormHistory = new Patient_FormHistory();
-        patient_FormLogOut = new Patient_FormLogOut();
         patient_FormChat = new Patient_FormChat();
 
         patientMenu.addEventMenuSelected(new PateintEventMenuSelected() {
@@ -51,13 +61,12 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 1) {
                     setForm(patient_FormAccount);
                 } else if (index == 2) {
-                    setForm(patient_FormAppointment);
+                    setForm(new Patient_FormAppointment());
                 } else if (index == 3) {
                     setForm(patient_FormHistory);
                 } else if (index == 4) {
                     setForm(patient_FormChat);
                 } else if (index == 9) {
-                    setForm(patient_FormLogOut);
                 }
             }
 
@@ -146,7 +155,9 @@ public class Main extends javax.swing.JFrame {
          * look and feel.
          * For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * 
          */
+        FlatMacLightLaf.setup();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

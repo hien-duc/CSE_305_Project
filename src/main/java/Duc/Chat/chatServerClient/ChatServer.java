@@ -39,6 +39,7 @@ public class ChatServer {
                 String message;
 
                 while ((message = in.readLine()) != null) {
+                    System.out.println(message);
                     broadcast(message);
                 }
             } catch (IOException e) {
@@ -56,7 +57,7 @@ public class ChatServer {
         private void broadcast(String message) {
             for (Socket client : clients) {
                 try {
-                    
+
                     PrintWriter clientOut = new PrintWriter(client.getOutputStream(), true);
                     clientOut.println(message);
                 } catch (IOException e) {

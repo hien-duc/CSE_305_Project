@@ -51,7 +51,6 @@ Duc\Chat\chat\animation\AnimationScroll.class
 PateintSwing\PatientList_Menu$3.class
 Duc\History\HistoryDAO.class
 DoctorForm\Doctor_FormAppointment$1.class
-Duc\Chat\chatServerClient\ChatClient.class
 Duc\Chat\chat\swing\AutoWrapText.class
 PateintComponent\PatientMenu$1.class
 Minh\UI\FormRegister\ofPatient$6.class
@@ -65,8 +64,6 @@ Duc\Payment\PaymentDAO.class
 Duc\Chat\chat\component\ChatBox.class
 PatientForm\Patient_FormAccount$12.class
 Duc\Chat\chat\component\ChatBox$BoxType.class
-PatientForm\Patient_FormChat$1.class
-Duc\PaymentUI\PaymentUI$4.class
 PateintModel\PatientTable$1.class
 Duc\Chat\chat\swing\scroll\ModernScrollBarUI$InvisibleScrollBarButton.class
 DAO\PatientDAO.class
@@ -121,7 +118,6 @@ Minh\UI\FormRegister\ofPatient$9.class
 Minh\UI\tableview\Test$2.class
 DoctorEvent\DoctorEventMenuSelected.class
 DoctorSwing\DoctorList_Menu$1.class
-Duc\Chat\chatServerClient\ChatClient2.class
 Duc\Chat\chat\swing\RoundPanel.class
 Duc\Chat\chatUI\component\ChatArea$4.class
 PatientForm\Patient_FormAccount$6.class
@@ -137,7 +133,6 @@ DoctorComponent\DoctorHeader$2.class
 Duc\Table\Table$2.class
 DoctorModel\DoctorModel_Menu$MenuType.class
 Duc\Chat\chatUI\component\ChatBox$BoxType.class
-Duc\PaymentUI\PaymentUI.class
 DoctorForm\Doctor_FormAppointment$3.class
 Duc\Chat\chat\component\ChatArea$4.class
 DoctorForm\Doctor_FormAccount$1.class
@@ -153,13 +148,11 @@ DoctorComponent\DoctorHeader$1.class
 Minh\UI\FormRegister\ofDoctor$3.class
 Patient\Patient.class
 PatientForm\Patient_FormHistory.class
-Duc\PaymentUI\PaymentUI$3.class
 Minh\UI\glassicon\Test$5.class
 Duc\Chat\chatUI\model\ModelMessage.class
 Minh\UI\tableview\Test.class
 Minh\Authentication\Authentication.class
 DoctorForm\Doctor_FormAppointment$8.class
-DoctorForm\Doctor_FormAppointment$10.class
 DoctorForm\Doctor_FormLogOut.class
 DoctorMain\Main$3.class
 PateintComponent\PatientHeader$2.class
@@ -168,7 +161,6 @@ Doctor\DoctorManagement.class
 Duc\Chat\chat\swing\ChatEvent.class
 Minh\UI\card\Test$1.class
 Minh\UI\glassicon\Test$4.class
-Duc\PaymentUI\PaymentUI$2.class
 PateintSwing\PateintBorderPanel.class
 PatientForm\Patient_FormAccount$5.class
 PatientForm\Patient_FormHistory$1.class
@@ -180,7 +172,6 @@ Duc\Table\Table.class
 DoctorForm\Doctor_FormHome.class
 PatientForm\Patient_FormAccount$8.class
 Minh\Authentication\AccountDAO.class
-Duc\PaymentUI\PaymentUI$1.class
 DoctorModel\DoctorModel_Menu.class
 Duc\Chat\chatUI\Chat$2.class
 PatientForm\Patient_FormLogOut.class
@@ -207,7 +198,6 @@ Duc\Chat\chatUI\swing\TextField$2.class
 DoctorSwing\DoctorSearchText.class
 DoctorMain\Main.class
 Duc\Chat\chatUI\animation\AnimationFloatingButton.class
-PatientForm\DialogPatientBookComfirm$2$1.class
 DoctorMain\Main$1.class
 Duc\Chat\chat\swing\scroll\ModernScrollBarUI.class
 DoctorComponent\DoctorMenu.class
