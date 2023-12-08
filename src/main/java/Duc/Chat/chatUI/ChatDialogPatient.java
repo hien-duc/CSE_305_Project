@@ -36,7 +36,7 @@ public class ChatDialogPatient extends javax.swing.JDialog {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy, hh:mmaa");
 
         try {
-            socket = new Socket("localhost", 12345);
+            socket = new Socket("10.30.184.163", 12345);
             System.out.println("Connected to the server.");
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

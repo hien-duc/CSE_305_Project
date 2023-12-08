@@ -12,7 +12,7 @@ import Minh.Form.Model.OfDoctor;
 
 import java.awt.Font;
 
-public class FormMainDoctor {
+public class TestMainDoctor {
 
     public static void main(String[] args) {
         // Install necessary libraries
@@ -38,5 +38,6 @@ public class FormMainDoctor {
                 "securePassword" // Password
         );
         new FormControllerDoctor(modelDoctor, viewDoctor);
+        
     }
 }

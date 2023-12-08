@@ -5,6 +5,11 @@ import javax.swing.JRadioButton;
 
 public class OfPatient extends javax.swing.JFrame {
 
+    public OfPatient() {
+        initComponents();
+        new JProgressBar().setIndeterminate(true);
+    }
+
     private void initComponents() {
         glassIcon1 = new raven.glassmorphism.GlassIcon();
         glassIcon2 = new raven.glassmorphism.GlassIcon();
@@ -46,6 +51,8 @@ public class OfPatient extends javax.swing.JFrame {
         rdoInsuranceNo = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtJob = new javax.swing.JTextField();
         btnConfirm = new javax.swing.JButton();
 
         glassIcon1.setGlassIconConfig(new raven.glassmorphism.GlassIconConfig(
@@ -110,16 +117,11 @@ public class OfPatient extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[] { "United States", "Canada", "Germany", "Japan", "Brazil" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
 
         jRadioButton1.setText("jRadioButton1");
         changeMode.setText("Change Mode");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         crazyPanel1.setFlatLafStyleComponent(new raven.crazypanel.FlatLafStyleComponent(
                 "[light]border:0,0,0,0,shade(@background,5%),,20;[dark]border:0,0,0,0,tint(@background,5%),,20;[light]background:shade(@background,2%);[dark]background:tint(@background,2%)",
@@ -144,7 +146,7 @@ public class OfPatient extends javax.swing.JFrame {
                         "",
                         "showClearButton:true;JTextField.placeholderText=Your weight",
                         "",
-                        "",
+                        "showClearButton:true;JTextField.placeholderText=Your job",
                         "",
                         "",
                         "",
@@ -170,6 +172,8 @@ public class OfPatient extends javax.swing.JFrame {
                         "span 2,grow 1",
                         "wrap,al lead",
                         "wrap,al lead",
+                        "",
+                        "",
                         "",
                         "",
                         "",
@@ -205,11 +209,6 @@ public class OfPatient extends javax.swing.JFrame {
         jLabel5.setText("Phone Number");
         crazyPanel1.add(jLabel5);
 
-        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumberActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(txtPhoneNumber);
 
         jLabel6.setText("Email Address");
@@ -226,11 +225,6 @@ public class OfPatient extends javax.swing.JFrame {
         jLabel9.setText("Date of birth");
         crazyPanel1.add(jLabel9);
 
-        txtDOB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDOBActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(txtDOB);
 
         jLabel10.setText("Height");
@@ -241,16 +235,15 @@ public class OfPatient extends javax.swing.JFrame {
         crazyPanel1.add(jLabel11);
         crazyPanel1.add(txtWeight);
 
+        jLabel17.setText("Job");
+        crazyPanel1.add(jLabel17);
+        crazyPanel1.add(txtJob);
+
         jLabel12.setText("Blood Type");
         crazyPanel1.add(jLabel12);
 
         cboBloodType.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" }));
-        cboBloodType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboBloodTypeActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(cboBloodType);
 
         jLabel16.setText("Gender");
@@ -258,29 +251,15 @@ public class OfPatient extends javax.swing.JFrame {
 
         bgGender.add(rdoMale);
         rdoMale.setText("Male");
-        rdoMale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoMaleActionPerformed(evt);
-            }
-        });
+
         crazyPanel1.add(rdoMale);
 
         bgGender.add(rdoFemale);
         rdoFemale.setText("Female");
-        rdoFemale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoFemaleActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(rdoFemale);
 
         bgGender.add(rdoOther);
         rdoOther.setText("Other");
-        rdoOther.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOtherActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(rdoOther);
 
         jLabel13.setText("Insurance");
@@ -298,11 +277,6 @@ public class OfPatient extends javax.swing.JFrame {
 
         btnConfirm.setBackground(new java.awt.Color(140, 170, 238));
         btnConfirm.setText("Confirm");
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmActionPerformed(evt);
-            }
-        });
         crazyPanel1.add(btnConfirm);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,7 +293,7 @@ public class OfPatient extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                                 layout.createSequentialGroup()
                                                         .addComponent(crazyPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                549, Short.MAX_VALUE)
+                                                                600, Short.MAX_VALUE)
                                                         .addGap(30, 30, 30)))));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,39 +308,11 @@ public class OfPatient extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
 
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtPhoneNumberActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtPhoneNumberActionPerformed
-
-    private void cboBloodTypeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboBloodTypeActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cboBloodTypeActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void rdoMaleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rdoMaleActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_rdoMaleActionPerformed
-
-    private void rdoFemaleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rdoFemaleActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_rdoFemaleActionPerformed
-
-    private void rdoOtherActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rdoOtherActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_rdoOtherActionPerformed
-
-    private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtDOBActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtDOBActionPerformed
-
-    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnConfirmActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnConfirmActionPerformed
+    public javax.swing.JTextField getTxtJob() {
+        return txtJob;
+    }
 
     public javax.swing.ButtonGroup getBgGender() {
         return bgGender;
@@ -524,6 +470,7 @@ public class OfPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -540,6 +487,7 @@ public class OfPatient extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoMale;
     private javax.swing.JRadioButton rdoOther;
     private javax.swing.JTextField txtDOB;
+    private javax.swing.JTextField txtJob;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtHeight;

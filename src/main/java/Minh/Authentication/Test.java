@@ -1,7 +1,6 @@
 package Minh.Authentication;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import Doctor.Doctor;
 import Patient.Patient;

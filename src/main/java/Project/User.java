@@ -1,6 +1,8 @@
 package Project;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
 	// Data members
 	protected String userName;

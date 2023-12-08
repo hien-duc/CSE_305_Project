@@ -12,6 +12,7 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import DAO.DoctorDAO;
 import Doctor.Doctor;
+import Minh.Authentication.AccountDAO;
 import Minh.Form.Model.OfDoctor;
 
 public class FormControllerDoctor {
@@ -28,26 +29,19 @@ public class FormControllerDoctor {
     }
 
     private void initViewDoctor() {
-        try {
-            viewDoctor.getTxtFirstName().setText(modelDoctor.getName().split(" ")[0]);
-            viewDoctor.getTxtLastname().setText(modelDoctor.getName().split(" ")[1]);
-            viewDoctor.getTxtPhoneNumber().setText(modelDoctor.getPhoneNumber());
-            viewDoctor.getTxtEmail().setText(modelDoctor.getEmail());
-            viewDoctor.getTxtAge().setText(modelDoctor.getAge());
-            viewDoctor.getTxtQualification().setText(modelDoctor.getQualification());
-            viewDoctor.getTxtMajor().setText(modelDoctor.getMajor());
-            viewDoctor.getCboExperience().setSelectedItem(modelDoctor.getExperience());
-            viewDoctor.setVisible(true);
-
-        } catch (Exception e) {
-
-        }
-
+        viewDoctor.setVisible(true);
     }
 
     public void initActionDoctor() {
+
         viewDoctor.getChangeMode().addActionListener(e -> doChangeMode(e));
         viewDoctor.getBtnConfirm().addActionListener(e -> confirmDoctor(e));
+    }
+
+    public void saveAccount() {
+        ArrayList<Doctor> doctors = AccountDAO.restoreAccountDoctor();
+        doctors.add(modelDoctor);
+        AccountDAO.saveAccountDoctor(doctors);
     }
 
     private void confirmDoctor(java.awt.event.ActionEvent evt) {
@@ -56,6 +50,7 @@ public class FormControllerDoctor {
             doctors = doctorDAO.restoreDataFromChar();
             doctors.add(modelDoctor);
             doctorDAO.saveDataByChar(doctors);
+            saveAccount();
             JOptionPane.showMessageDialog(viewDoctor, "Successfully added your account, Welcome!");
         } else {
             JOptionPane.showMessageDialog(viewDoctor, "You may need to input all of them");
@@ -100,8 +95,12 @@ public class FormControllerDoctor {
         if (!viewDoctor.getTxtMajor().getText().equals("")) {
             point++;
         }
+        if (viewDoctor.getRdoFemale().isSelected() || viewDoctor.getRdoOther().isSelected()
+                || viewDoctor.getRdoMale().isSelected()) {
+            point++;
+        }
 
-        if (point == 7) {
+        if (point == 8) {
             buildDoctor();
             return true;
         }
@@ -109,7 +108,6 @@ public class FormControllerDoctor {
     }
 
     private void buildDoctor() {
-
         modelDoctor.setName(viewDoctor.getTxtFirstName().getText() + " " + viewDoctor.getTxtLastname().getText());
         modelDoctor.setPhoneNumber(viewDoctor.getTxtPhoneNumber().getText());
         modelDoctor.setEmail(viewDoctor.getTxtEmail().getText());

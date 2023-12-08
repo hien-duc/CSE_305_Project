@@ -10,7 +10,7 @@ import Patient.Patient;
 
 import java.awt.Font;
 
-public class FormMainPatient {
+public class TestMainPatient {
     public static void main(String[] args) throws InterruptedException {
 
         // Install necessary libraries

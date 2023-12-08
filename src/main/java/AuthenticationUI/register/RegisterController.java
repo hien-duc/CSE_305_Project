@@ -1,10 +1,12 @@
 package AuthenticationUI.register;
 
-import AuthenticationUI.main.Application;
+import AuthenticationUI.util.GetRole;
+import AuthenticationUI.util.ValidRegister;
 import Doctor.Doctor;
-import DoctorMain.DoctorMain;
-import Minh.Authentication.AccountDAO;
-import PateintMain.PatientMain;
+import Minh.Form.Controller.FormControllerDoctor;
+import Minh.Form.Controller.FormControllerPatient;
+import Minh.Form.Model.OfDoctor;
+import Minh.Form.Model.OfPatient;
 import Patient.Patient;
 
 import java.util.ArrayList;
@@ -12,84 +14,46 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class RegisterController {
-    private Register registerView;
-    private Application application;
+   private Register registerView;
+   ValidRegister validator;
 
-    ArrayList<Patient> patients;
-    ArrayList<Doctor> doctors;
+   public RegisterController(Register registerView) {
+      this.registerView = registerView;
+      validator = new ValidRegister(registerView);
+      initActions();
+   }
 
-    String username;
-    char[] passwordArr;
-    String password;
-    char[] confirmPasswordArr;
-    String confirmPassword;
+   public void initActions() {
+      registerView.getBtnRegisterPatient().addActionListener(e -> RegisterPatientPerformed());
+      registerView.getBtnRegisterDoctor().addActionListener(e -> RegisterDoctorPerformed());
+   }
 
-    public RegisterController(Register registerView, Application application) {
-        this.registerView = registerView;
-        this.application = application;
-        initActions();
-    }
+   public void RegisterDoctorPerformed() {
+      if (validator.doValidRegister()) {
+         if (validator.doCheckDuplicate(GetRole.DOCTOR_SIDE.getCode())) {
+            JOptionPane.showMessageDialog(registerView,
+                  "Register successfully! Please fill all information in the form");
+            OfDoctor doctorView = new OfDoctor();
+            Doctor doctor = new Doctor();
+            doctor.setUserName(validator.getUsername());
+            doctor.setPassword(validator.getPassword());
+            new FormControllerDoctor(doctor, doctorView);
+         }
+      }
+   }
 
-    public void initActions() {
-        registerView.getBtnRegisterPatient().addActionListener(e -> registerPatient());
-        registerView.getBtnRegisterDoctor().addActionListener(e -> registerDoctor());
-    }
+   public void RegisterPatientPerformed() {
+      if (validator.doValidRegister()) {
+         if (validator.doCheckDuplicate(GetRole.PATIENT_SIDE.getCode())) {
+            JOptionPane.showMessageDialog(registerView,
+                  "Register successfully! Please fill all information in the form");
+            OfPatient patientView = new OfPatient();
+            Patient patient = new Patient();
+            patient.setUserName(validator.getUsername());
+            patient.setPassword(validator.getPassword());
+            new FormControllerPatient(patient, patientView);
+         }
+      }
+   }
 
-    public void registerPatient() {
-        if (validateRegistration()) {
-            openPatientUI();
-            application.hideLogin();
-        }
-    }
-
-    public void registerDoctor() {
-        if (validateRegistration()) {
-            openDoctorUI();
-            application.hideLogin();
-
-        }
-    }
-
-    private boolean validateRegistration() {
-        patients = AccountDAO.restoreAccountPatient();
-        getInformation();
-
-        if (registerView.getTxtUsername().getText().isEmpty() ||
-                registerView.getTxtPassword().getPassword().length == 0 ||
-                registerView.getTxtConfirmPassword().getPassword().length == 0) {
-            JOptionPane.showMessageDialog(registerView, "Please fill in all required fields.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(registerView, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        for (int i = 0; i < patients.size(); i++) {
-            if (patients.get(i).getUserName().equals(registerView.getTxtUsername().getText())) {
-                JOptionPane.showMessageDialog(registerView, "Duplicate username", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void openPatientUI() {
-        PatientMain patientMain = new PatientMain();
-        patientMain.setVisible(true);
-    }
-
-    private void openDoctorUI() {
-        DoctorMain doctorMain = new DoctorMain();
-        doctorMain.setVisible(true);
-    }
-
-    public void getInformation() {
-        username = registerView.getTxtUsername().getText();
-        passwordArr = registerView.getTxtPassword().getPassword();
-        password = Application.getStringPassword(passwordArr);
-        confirmPasswordArr = registerView.getTxtConfirmPassword().getPassword();
-        confirmPassword = Application.getStringPassword(confirmPasswordArr);
-    }
 }

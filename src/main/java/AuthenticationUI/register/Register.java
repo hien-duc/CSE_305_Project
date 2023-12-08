@@ -3,8 +3,6 @@ package AuthenticationUI.register;
 import com.formdev.flatlaf.FlatClientProperties;
 import net.miginfocom.swing.MigLayout;
 import AuthenticationUI.component.PasswordStrengthStatus;
-import AuthenticationUI.login.Login;
-import AuthenticationUI.manager.FormsManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -84,9 +82,9 @@ public class Register extends JPanel {
                                 "border:3,3,3,3");
                 btnChangeToLogin.setContentAreaFilled(false);
                 btnChangeToLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                btnChangeToLogin.addActionListener(e -> {
-                        FormsManager.getInstance().showForm(new Login());
-                });
+                // btnChangeToLogin.addActionListener(e -> {
+                // FormsManager.getInstance().showForm(new Login());
+                // });
                 JLabel label = new JLabel("Already have an account?");
                 label.putClientProperty(FlatClientProperties.STYLE, "" +
                                 "[light]foreground:lighten(@foreground,30%);" +
@@ -97,27 +95,9 @@ public class Register extends JPanel {
                 add(panel);
         }
 
-        // private Component createLoginLabel() {
-        // JPanel panelRegister = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        // panelRegister.putClientProperty(FlatClientProperties.STYLE, "" +
-        // "background:null");
-        // JButton btnChangeToLogin = new JButton("<html><a href=\"#\">Sign in
-        // here</a></html>");
-        // btnChangeToLogin.putClientProperty(FlatClientProperties.STYLE, "" +
-        // "border:3,3,3,3");
-        // btnChangeToLogin.setContentAreaFilled(false);
-        // btnChangeToLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        // btnChangeToLogin.addActionListener(e -> {
-        // FormsManager.getInstance().showForm(new Login());
-        // });
-        // JLabel label = new JLabel("Already have an account?");
-        // label.putClientProperty(FlatClientProperties.STYLE, "" +
-        // "[light]foreground:lighten(@foreground,30%);" +
-        // "[dark]foreground:darken(@foreground,30%)");
-        // panelRegister.add(label);
-        // panelRegister.add(btnChangeToLogin);
-        // return panelRegister;
-        // }
+        public JButton getBtnChangeToLogin() {
+                return btnChangeToLogin;
+        }
 
         public JTextField getTxtFirstName() {
                 return txtFirstName;
@@ -176,7 +156,4 @@ public class Register extends JPanel {
         private PasswordStrengthStatus passwordStrengthStatus;
         private JButton btnChangeToLogin;
 
-        public JButton getBtnChangeToLogin() {
-                return btnChangeToLogin;
-        }
 }

@@ -20,7 +20,6 @@ public class ChatDialogDoctor extends javax.swing.JDialog {
     private Icon icon;
     private String name;
     private String date;
-    private String message;
     Socket socket;
     PrintWriter out;
     BufferedReader in;

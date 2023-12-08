@@ -1,7 +1,5 @@
 package Doctor;
 
-
-
 import java.io.Serializable;
 
 import Project.User;

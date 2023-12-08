@@ -3,9 +3,9 @@ package AuthenticationUI.main;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+
 import AuthenticationUI.login.Login;
 import AuthenticationUI.login.LoginController;
-import AuthenticationUI.manager.FormsManager;
 import AuthenticationUI.register.Register;
 import AuthenticationUI.register.RegisterController;
 
@@ -23,7 +23,7 @@ public class Application extends JFrame {
 
     private void init() {
         setTitle("Login");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(new Dimension(600, 650));
         setLocationRelativeTo(null);
 
@@ -35,14 +35,13 @@ public class Application extends JFrame {
         cardPanel.add(loginView, "login");
         cardPanel.add(registerView, "register");
 
-        new LoginController(loginView, this);
-        new RegisterController(registerView, this);
+        new LoginController(loginView);
+        new RegisterController(registerView);
 
         setContentPane(cardPanel);
         loginView.getBtnChangeToRegister().addActionListener(e -> changePanelToRegister());
         registerView.getBtnChangeToLogin().addActionListener(e -> changePanelToLogin());
 
-        FormsManager.getInstance().initApplication(this);
     }
 
     public void changePanelToLogin() {

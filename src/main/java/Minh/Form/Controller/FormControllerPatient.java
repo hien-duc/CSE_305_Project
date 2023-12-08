@@ -2,18 +2,23 @@ package Minh.Form.Controller;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import DAO.PatientDAO;
+import Doctor.Doctor;
+import Minh.Authentication.AccountDAO;
 import Minh.Form.Model.OfPatient;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import Patient.Patient;
+import java.awt.Font;
 
 public class FormControllerPatient {
     private Patient modelPatient;
@@ -21,6 +26,11 @@ public class FormControllerPatient {
     private PatientDAO patientDAO = new PatientDAO();
 
     public FormControllerPatient(Patient modelPatient, OfPatient viewPatient) {
+        FlatRobotoFont.install();
+        FlatLaf.registerCustomDefaultsSource("crazypanel");
+        UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
+        FlatMacLightLaf.setup();
+
         this.modelPatient = modelPatient;
         this.viewPatient = viewPatient;
         initViewPatient();
@@ -28,39 +38,18 @@ public class FormControllerPatient {
     }
 
     public void initViewPatient() {
-        try {
-            viewPatient.getTxtFirstName().setText(modelPatient.getName().split(" ")[0]);
-            viewPatient.getTxtLastname().setText(modelPatient.getName().split(" ")[1]);
-            viewPatient.getTxtPhoneNumber().setText(modelPatient.getPhoneNumber());
-            viewPatient.getTxtEmail().setText(modelPatient.getEmail());
-            viewPatient.getTxtDOB().setText(modelPatient.getdOB());
-            viewPatient.getTxtHeight().setText(modelPatient.getHeight());
-            viewPatient.getTxtWeight().setText(modelPatient.getWeight());
-            viewPatient.getCboBloodType().setSelectedItem(modelPatient.getBloodType());
-            if (modelPatient.getGender().equalsIgnoreCase("male")) {
-                viewPatient.getRdoMale().setSelected(true);
-            } else if (modelPatient.getGender().equalsIgnoreCase("female")) {
-                viewPatient.getRdoFemale().setSelected(true);
-            } else {
-                viewPatient.getRdoOther().setSelected(true);
-            }
-
-            if (modelPatient.getInsurance().equalsIgnoreCase("yes")) {
-                viewPatient.getRdoInsuranceYes().setSelected(true);
-            } else if (modelPatient.getInsurance().equalsIgnoreCase("no")) {
-                viewPatient.getRdoInsuranceNo().setSelected(true);
-            }
-
-            viewPatient.setVisible(true);
-
-        } catch (Exception e) {
-
-        }
+        viewPatient.setVisible(true);
     }
 
     public void initActionPatient() {
         viewPatient.getChangeMode().addActionListener(e -> doChangeMode(e));
         viewPatient.getBtnConfirm().addActionListener(e -> confirmPatient(e));
+    }
+
+    public void saveAccount() {
+        ArrayList<Patient> patients = AccountDAO.restoreAccountPatient();
+        patients.add(modelPatient);
+        AccountDAO.saveAccountPatient(patients);
     }
 
     private void confirmPatient(java.awt.event.ActionEvent evt) {
@@ -69,6 +58,7 @@ public class FormControllerPatient {
             patients = patientDAO.restoreDataFromChar();
             patients.add(modelPatient);
             patientDAO.saveDataByChar(patients);
+            saveAccount();
             JOptionPane.showMessageDialog(viewPatient, "Successfully added your account, Welcome!");
         } else {
             JOptionPane.showMessageDialog(viewPatient, "You may need to input all of them");
@@ -82,7 +72,6 @@ public class FormControllerPatient {
     private void doChangeMode(java.awt.event.ActionEvent evt) {
         EventQueue.invokeLater(() -> {
             FlatAnimatedLafChange.showSnapshot();
-
             if (!FlatLaf.isLafDark()) {
                 FlatMacDarkLaf.setup();
             } else {
@@ -117,6 +106,9 @@ public class FormControllerPatient {
         if (!viewPatient.getTxtWeight().getText().equals("")) {
             point++;
         }
+        if (!viewPatient.getTxtJob().getText().equals("")) {
+            point++;
+        }
         if (viewPatient.getRdoFemale().isSelected() || viewPatient.getRdoOther().isSelected()
                 || viewPatient.getRdoMale().isSelected()) {
             point++;
@@ -124,7 +116,7 @@ public class FormControllerPatient {
         if (viewPatient.getRdoInsuranceNo().isSelected() || viewPatient.getRdoInsuranceYes().isSelected()) {
             point++;
         }
-        if (point == 9) {
+        if (point == 10) {
             buildPatient();
             return true;
         }
@@ -139,7 +131,7 @@ public class FormControllerPatient {
         modelPatient.setWeight(viewPatient.getTxtWeight().getText());
         modelPatient.setHeight(viewPatient.getTxtHeight().getText());
         modelPatient.setBloodType(viewPatient.getCboBloodType().getSelectedItem().toString());
-
+        modelPatient.setJob(viewPatient.getTxtJob().getText());
         if (viewPatient.getRdoMale().isSelected()) {
             modelPatient.setGender("Male");
         } else if (viewPatient.getRdoFemale().isSelected()) {

@@ -42,7 +42,11 @@ public class OfDoctor extends javax.swing.JFrame {
         space = new javax.swing.JLabel();
 
         btnConfirm = new javax.swing.JButton();
-
+        jLabelGender = new javax.swing.JLabel();
+        bgGender = new javax.swing.ButtonGroup();
+        rdoMale = new javax.swing.JRadioButton();
+        rdoFemale = new javax.swing.JRadioButton();
+        rdoOther = new javax.swing.JRadioButton();
         glassIcon1.setGlassIconConfig(new raven.glassmorphism.GlassIconConfig(
                 "/glassicon/icon/card.svg", 5.0f, 0, 5,
                 new java.util.HashMap<Integer, String>() {
@@ -109,7 +113,7 @@ public class OfDoctor extends javax.swing.JFrame {
         jRadioButton1.setText("jRadioButton1");
         changeMode.setText("Change Mode");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         crazyPanel1.setFlatLafStyleComponent(new raven.crazypanel.FlatLafStyleComponent(
                 "[light]border:0,0,0,0,shade(@background,5%),,20;[dark]border:0,0,0,0,tint(@background,5%),,20;[light]background:shade(@background,2%);[dark]background:tint(@background,2%)",
@@ -169,9 +173,10 @@ public class OfDoctor extends javax.swing.JFrame {
                         "",
                         "",
                         "",
-                        "",
+                        "split 3",
                         "",
                         "span 2,al trail"
+
                 }));
 
         jLabel1.setText("Doctor's Information");
@@ -213,8 +218,21 @@ public class OfDoctor extends javax.swing.JFrame {
                         "Master's Degree", "Professional Doctorate", "Doctor of Philosophy (Ph.D.)" }));
 
         crazyPanel1.add(cboExperience);
+        jLabelGender.setText("Gender");
+        crazyPanel1.add(jLabelGender);
 
-        crazyPanel1.add(space);
+        bgGender.add(rdoMale);
+        rdoMale.setText("Male");
+
+        crazyPanel1.add(rdoMale);
+
+        bgGender.add(rdoFemale);
+        rdoFemale.setText("Female");
+        crazyPanel1.add(rdoFemale);
+
+        bgGender.add(rdoOther);
+        rdoOther.setText("Other");
+        crazyPanel1.add(rdoOther);
         crazyPanel1.add(space);
         btnConfirm.setBackground(new java.awt.Color(140, 170, 238));
         btnConfirm.setText("Confirm");
@@ -234,7 +252,7 @@ public class OfDoctor extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                                 layout.createSequentialGroup()
                                                         .addComponent(crazyPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                549, Short.MAX_VALUE)
+                                                                600, Short.MAX_VALUE)
                                                         .addGap(30, 30, 30)))));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,6 +267,22 @@ public class OfDoctor extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
 
+    }
+
+    public javax.swing.ButtonGroup getBgGender() {
+        return bgGender;
+    }
+
+    public javax.swing.JRadioButton getRdoMale() {
+        return rdoMale;
+    }
+
+    public javax.swing.JRadioButton getRdoFemale() {
+        return rdoFemale;
+    }
+
+    public javax.swing.JRadioButton getRdoOther() {
+        return rdoOther;
     }
 
     public javax.swing.JButton getBtnConfirm() {
@@ -332,6 +366,11 @@ public class OfDoctor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgGender;
+    private javax.swing.JRadioButton rdoMale;
+    private javax.swing.JRadioButton rdoFemale;
+
+    private javax.swing.JRadioButton rdoOther;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JComboBox<String> cboExperience;
     private raven.crazypanel.CrazyPanel crazyPanel1;
@@ -363,5 +402,6 @@ public class OfDoctor extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtMajor;
+    private javax.swing.JLabel jLabelGender;
     // End of variables declaration//GEN-END:variables
 }

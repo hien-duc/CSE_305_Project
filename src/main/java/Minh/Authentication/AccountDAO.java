@@ -40,30 +40,6 @@ public class AccountDAO {
         }
     }
 
-    public static ArrayList<Patient> restoreAccountPatient() {
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        ArrayList<Patient> accountData = null;
-
-        try {
-            fis = new FileInputStream(patientPath);
-            ois = new ObjectInputStream(fis);
-            accountData = (ArrayList<Patient>) ois.readObject();
-
-        } catch (FileNotFoundException ex) {
-        } catch (IOException | ClassNotFoundException ex) {
-        } finally {
-
-            try {
-                fis.close();
-                ois.close();
-            } catch (IOException ex) {
-            }
-        }
-
-        return accountData;
-    }
-
     public static void saveAccountPatient(ArrayList<Patient> list) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -83,10 +59,39 @@ public class AccountDAO {
         }
     }
 
+    public static ArrayList<Patient> restoreAccountPatient() {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        ArrayList<Patient> accountData = new ArrayList<>();
+
+        try {
+            fis = new FileInputStream(patientPath);
+            ois = new ObjectInputStream(fis);
+            accountData = (ArrayList<Patient>) ois.readObject();
+
+        } catch (FileNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
+        } finally {
+
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
+            }
+        }
+
+        return accountData;
+    }
+
     public static ArrayList<Doctor> restoreAccountDoctor() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
-        ArrayList<Doctor> accountData = null;
+        ArrayList<Doctor> accountData = new ArrayList<>();
 
         try {
             fis = new FileInputStream(doctorPath);
@@ -96,11 +101,15 @@ public class AccountDAO {
         } catch (FileNotFoundException ex) {
         } catch (IOException | ClassNotFoundException ex) {
         } finally {
-
             try {
-                fis.close();
-                ois.close();
+                if (fis != null) {
+                    fis.close();
+                }
+                if (ois != null) {
+                    ois.close();
+                }
             } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
             }
         }
 
@@ -113,15 +122,20 @@ public class AccountDAO {
         try {
             fos = new FileOutputStream(doctorPath);
             oos = new ObjectOutputStream(fos);
+
             oos.writeObject(list);
             oos.flush();
-
         } catch (IOException ex) {
         } finally {
             try {
-                fos.close();
-                oos.close();
+                if (fos != null) {
+                    fos.close();
+                }
+                if (oos != null) {
+                    oos.close();
+                }
             } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
             }
         }
     }
