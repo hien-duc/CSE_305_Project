@@ -6,17 +6,8 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.table.DefaultTableModel;
 
-
-
-/**
- *
- * @author RAVEN
- */
 public class Table extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Test
-     */
     public Table() {
         initComponents();
         table.setDefaultRenderer(Object.class, new TableGradientCell());
@@ -33,21 +24,21 @@ public class Table extends javax.swing.JFrame {
         testData();
     }
 
-    private void testData(){
-        DefaultTableModel model=(DefaultTableModel)table.getModel();
-        
-        model.addRow(new Object[]{1, "John Smith", "john.smith@example.com", "123 Main St, City", "Manager"});
-        model.addRow(new Object[]{2, "Sarah Jones", "sarah.jones@example.com", "456 Elm St, Town", "Salesperson"});
-        model.addRow(new Object[]{3, "David Brown", "david.b@example.com", "789 Oak St, Village", "Technician"});
-        model.addRow(new Object[]{4, "Lisa Davis", "lisa.d@example.com", "101 Pine St, Town", "Receptionist"});
-        model.addRow(new Object[]{5, "Mark Wilson", "mark.w@example.com", "555 Cedar St, City", "Accountant"});
-        model.addRow(new Object[]{6,"Alice Johnson", "alice.j@example.com", "222 Elm St, Village", "Marketing"});
-       
+    private void testData() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        model.addRow(new Object[] { 1, "John Smith", "john.smith@example.com", "123 Main St, City", "Manager" });
+        model.addRow(new Object[] { 2, "Sarah Jones", "sarah.jones@example.com", "456 Elm St, Town", "Salesperson" });
+        model.addRow(new Object[] { 3, "David Brown", "david.b@example.com", "789 Oak St, Village", "Technician" });
+        model.addRow(new Object[] { 4, "Lisa Davis", "lisa.d@example.com", "101 Pine St, Town", "Receptionist" });
+        model.addRow(new Object[] { 5, "Mark Wilson", "mark.w@example.com", "555 Cedar St, City", "Accountant" });
+        model.addRow(new Object[] { 6, "Alice Johnson", "alice.j@example.com", "222 Elm St, Village", "Marketing" });
+
     }
-    
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -59,19 +50,18 @@ public class Table extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "No", "Name", "Email", "Address", "Position"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                },
+                new String[] {
+                        "No", "Name", "Email", "Address", "Position"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         scroll.setViewportView(table);
@@ -86,19 +76,17 @@ public class Table extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
-                .addGap(36, 36, 36))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+                                .addGap(36, 36, 36)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                                .addGap(38, 38, 38)));
 
         pack();
         setLocationRelativeTo(null);
@@ -106,7 +94,7 @@ public class Table extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         FlatLaf.registerCustomDefaultsSource("raven.table");
-        //FlatMacDarkLaf.setup();
+        // FlatMacDarkLaf.setup();
         FlatMacLightLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

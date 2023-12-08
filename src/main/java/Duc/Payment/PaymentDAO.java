@@ -21,7 +21,7 @@ public class PaymentDAO {
 	 * private String currentDate = LocalDate.now().toString();// get current date
 	 * private String currentTime = LocalTime.now().toString();// get current time
 	 */
-	
+
 	// Constructors
 	public PaymentDAO() {
 		File folder = new File(folderPath);
@@ -34,7 +34,6 @@ public class PaymentDAO {
 			try {
 				file.createNewFile();
 			} catch (IOException ex) {
-				System.out.println(ex.getMessage());
 			}
 		}
 	}
@@ -80,7 +79,7 @@ public class PaymentDAO {
 				try {
 					ois.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+
 				}
 			}
 		}

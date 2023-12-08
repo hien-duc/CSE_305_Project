@@ -19,8 +19,8 @@ public class AccountManager {
     }
 
     public boolean register(Patient newPatient) {
-        if (!patients.containsKey(newPatient.getName())) {
-            patients.put(newPatient.getName(), newPatient);
+        if (!patients.containsKey(newPatient.getUserName())) {
+            patients.put(newPatient.getUserName(), newPatient);
             System.out.println("Account registered successfully.");
             return true;
         }
@@ -29,8 +29,8 @@ public class AccountManager {
     }
 
     public boolean register(Doctor newDoctor) {
-        if (!doctors.containsKey(newDoctor.getName())) {
-            doctors.put(newDoctor.getName(), newDoctor);
+        if (!doctors.containsKey(newDoctor.getUserName())) {
+            doctors.put(newDoctor.getUserName(), newDoctor);
             System.out.println("Account registered successfully.");
             return true;
         }

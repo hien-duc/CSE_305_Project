@@ -1,8 +1,6 @@
 package Patient;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import Project.User;
@@ -48,7 +46,8 @@ public class Patient extends User implements Serializable {
     public int calculateAge(String dOB) {
         Calendar instance = Calendar.getInstance();
         int currentYear = instance.get(Calendar.YEAR);
-        System.out.println(currentYear - Integer.parseInt(dOB.substring(6, dOB.length())));
+        // System.out.println(currentYear - Integer.parseInt(dOB.substring(6,
+        // dOB.length())));
         return currentYear - Integer.parseInt(dOB.substring(6, dOB.length()));
 
     }

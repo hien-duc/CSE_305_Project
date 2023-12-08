@@ -13,13 +13,10 @@ import Doctor.Doctor;
 import Patient.Patient;
 
 public class AccountDAO {
-    protected String rootPath = System.getProperty("user.dir");
-    protected String folderPath = rootPath + "\\Backup";
-    protected String patientPath = folderPath + "\\" + "Patient Account.csv";
-    protected String doctorPath = folderPath + "\\" + "Doctor Account.csv";
-
-    protected ArrayList<Patient> patientList = new ArrayList<Patient>();
-    protected ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
+    protected static String rootPath = System.getProperty("user.dir");
+    protected static String folderPath = rootPath + "\\Backup";
+    protected static String patientPath = folderPath + "\\" + "Patient Account.csv";
+    protected static String doctorPath = folderPath + "\\" + "Doctor Account.csv";
 
     public AccountDAO() {
         File folder = new File(folderPath);
@@ -43,31 +40,7 @@ public class AccountDAO {
         }
     }
 
-    public ArrayList<Patient> restoreAccountPatient() {
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        ArrayList<Patient> accountData = null;
-
-        try {
-            fis = new FileInputStream(patientPath);
-            ois = new ObjectInputStream(fis);
-            accountData = (ArrayList<Patient>) ois.readObject();
-
-        } catch (FileNotFoundException ex) {
-        } catch (IOException | ClassNotFoundException ex) {
-        } finally {
-
-            try {
-                fis.close();
-                ois.close();
-            } catch (IOException ex) {
-            }
-        }
-
-        return accountData;
-    }
-
-    public void saveAccountPatient(ArrayList<Patient> list) {
+    public static void saveAccountPatient(ArrayList<Patient> list) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -86,10 +59,39 @@ public class AccountDAO {
         }
     }
 
-    public ArrayList<Doctor> restoreAccountDoctor() {
+    public static ArrayList<Patient> restoreAccountPatient() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
-        ArrayList<Doctor> accountData = null;
+        ArrayList<Patient> accountData = new ArrayList<>();
+
+        try {
+            fis = new FileInputStream(patientPath);
+            ois = new ObjectInputStream(fis);
+            accountData = (ArrayList<Patient>) ois.readObject();
+
+        } catch (FileNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
+        } finally {
+
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
+            }
+        }
+
+        return accountData;
+    }
+
+    public static ArrayList<Doctor> restoreAccountDoctor() {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        ArrayList<Doctor> accountData = new ArrayList<>();
 
         try {
             fis = new FileInputStream(doctorPath);
@@ -99,41 +101,43 @@ public class AccountDAO {
         } catch (FileNotFoundException ex) {
         } catch (IOException | ClassNotFoundException ex) {
         } finally {
-
             try {
-                fis.close();
-                ois.close();
+                if (fis != null) {
+                    fis.close();
+                }
+                if (ois != null) {
+                    ois.close();
+                }
             } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
             }
         }
 
         return accountData;
     }
 
-    public void saveAccountDoctor(ArrayList<Doctor> list) {
+    public static void saveAccountDoctor(ArrayList<Doctor> list) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream(doctorPath);
             oos = new ObjectOutputStream(fos);
+
             oos.writeObject(list);
             oos.flush();
-
         } catch (IOException ex) {
         } finally {
             try {
-                fos.close();
-                oos.close();
+                if (fos != null) {
+                    fos.close();
+                }
+                if (oos != null) {
+                    oos.close();
+                }
             } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception
             }
         }
     }
 
-    public ArrayList<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public ArrayList<Doctor> getDoctorList() {
-        return doctorList;
-    }
 }

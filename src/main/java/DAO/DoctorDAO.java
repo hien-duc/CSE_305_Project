@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class DoctorDAO {
 
 	// Data members
-	private String rootPath = System.getProperty("user.dir");
-	protected String folderPath = rootPath + "\\Backup";
-	protected String FileData = folderPath + "\\" + "DoctorData.csv";
+	private static String rootPath = System.getProperty("user.dir");
+	protected static String folderPath = rootPath + "\\Backup";
+	protected static String FileData = folderPath + "\\" + "DoctorData.csv";
 
 	// Constructor
 	public DoctorDAO() {
@@ -36,7 +36,7 @@ public class DoctorDAO {
 		BufferedWriter bw = null;
 
 		try {
-			fw = new FileWriter( FileData);
+			fw = new FileWriter(FileData);
 			bw = new BufferedWriter(fw);
 
 			for (int i = 0; i < list.size(); i++) {
@@ -74,7 +74,7 @@ public class DoctorDAO {
 		}
 	}
 
-	public ArrayList<Doctor> restoreDataFromChar() {
+	public static ArrayList<Doctor> restoreDataFromChar() {
 
 		ArrayList<Doctor> list1 = new ArrayList<>();
 		try {

@@ -17,21 +17,24 @@ public class DoctorManagement {
 
     protected ArrayList<Doctor> listDoctor = new ArrayList<>();
 
-    protected ArrayList<Doctor> listMajor = new ArrayList<>();
     protected ArrayList<Doctor> listExperience = new ArrayList<>();
     protected int numOfDoctor = 0;
 
     protected ArrayList<Doctor> listDoctorbyName = new ArrayList<>();
-    DoctorDAO doctorDao;
+    DoctorDAO doctorDao = new DoctorDAO();
+
+    ;
 
     public DoctorManagement() {
-        doctorDao = new DoctorDAO();
+        listDoctor = doctorDao.restoreDataFromChar();
+        numOfDoctor = listDoctor.size();
+        
 
     }
 
     public boolean addDoctor(Doctor doctor) {
         Doctor temp = searchbyUserName(doctor.getUserName());
-        if (temp == null) {
+        if (temp != null) {
             listDoctor.add(doctor);
             numOfDoctor++;
             System.out.println("Added Succesfully");
@@ -48,18 +51,16 @@ public class DoctorManagement {
         return listDoctor;
     }
 
-    public void setListPet(ArrayList<Doctor> manager) {
+    public void setListDoctor(ArrayList<Doctor> manager) {
         this.listDoctor = manager;
     }
 
-    public ArrayList<Doctor> searchByName(String name) {
+    public Doctor searchByName(String name) {
         for (int i = 0; i < numOfDoctor; i++) {
             Doctor temp = listDoctor.get(i);
             if (temp.getName().equalsIgnoreCase(name)) {
-                listDoctorbyName.add(temp);
+                return temp;
             }
-
-            return listDoctorbyName;
 
         }
         return null;
@@ -67,7 +68,7 @@ public class DoctorManagement {
 
     public Doctor searchbyUserName(String username) {
         for (int i = 0; i < numOfDoctor; i++) {
-            if (listDoctor.get(i).getAge().equalsIgnoreCase(username)) {
+            if (listDoctor.get(i).getUserName().equalsIgnoreCase(username)) {
                 return listDoctor.get(i);
             }
 
@@ -78,7 +79,7 @@ public class DoctorManagement {
     public ArrayList<Doctor> searchByGender(String gender) {
         ArrayList<Doctor> listGender = new ArrayList<>();
         for (int i = 0; i < numOfDoctor; i++) {
-            if (listDoctor.get(i).getGender().equalsIgnoreCase(gender)) {
+            if (listDoctor.get(i).getGender().toLowerCase().equals(gender.toLowerCase())) {
                 listGender.add(listDoctor.get(i));
             }
 
@@ -86,23 +87,43 @@ public class DoctorManagement {
         return listGender;
     }
 
+    public ArrayList<Doctor> searchByMajor(String major) {
+        ArrayList<Doctor> listMajor = new ArrayList<>();
+        for (int i = 0; i < numOfDoctor; i++) {
+            if (listDoctor.get(i).getMajor().toLowerCase().contains(major.toLowerCase())) {
+                listMajor.add(listDoctor.get(i));
+            }
+
+        }
+        return listMajor;
+    }
+
+    public ArrayList<Doctor> searchByStatus(String status) {
+        ArrayList<Doctor> listStatus = new ArrayList<>();
+        for (int i = 0; i < numOfDoctor; i++) {
+            if (listDoctor.get(i).getIsAvailable().toLowerCase().equals(status.toLowerCase())) {
+                listStatus.add(listDoctor.get(i));
+            }
+
+        }
+        return listStatus;
+    }
+
     public boolean editDoctor(Doctor doctor) {
         Doctor temp = doctor;
         if (searchbyUserName(temp.getUserName()) != null) {
-            temp.setAge("");
-            temp.setEmail("");
-            temp.setExperience("");
-            temp.setGender("");
-            temp.setIsAvailable("");
-            temp.setMajor("");
-            temp.setName("");
-            temp.setPhoneNumber("");
-            temp.setQualification("");
             System.out.println("Successful");
             return true;
         } else {
             return false;
         }
+
+    }
+
+    public void a(Doctor doctor) {
+
+        Doctor temp = searchbyUserName(doctor.getUserName());
+        System.out.println(temp.getIsAvailable());
 
     }
 }

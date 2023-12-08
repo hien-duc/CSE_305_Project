@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DoctorSwing;
 
 import java.awt.Color;
@@ -15,23 +12,24 @@ import javax.swing.border.EmptyBorder;
 
 public class DoctorSearchText extends JTextField {
 
-    //Data members
+    // Data members
     private final String hint = "Search here...";
 
-    //Constructors
+    // Constructors
     public DoctorSearchText() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setSelectionColor(new Color(220, 204, 182));
-        
+
     }
-    //Methods    
+    // Methods
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         if (getText().length() == 0) {
             int h = getHeight();
-            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             Insets ins = getInsets();
             FontMetrics fm = g.getFontMetrics();
             int c0 = getBackground().getRGB();
@@ -43,5 +41,5 @@ public class DoctorSearchText extends JTextField {
             g.drawString(hint, ins.left, h / 2 + fm.getAscent() / 2 - 2);
         }
     }
-    
+
 }

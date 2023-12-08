@@ -6,6 +6,7 @@ public class PaymentManager {
 	// Data members
 	private PaymentDAO paymentDao = new PaymentDAO();
 	private ArrayList<Payment> listPayment = paymentDao.restorePayment();
+	private ArrayList<Payment> listSearch = new ArrayList<Payment>();
 
 	// Constructors
 	public PaymentManager() {
@@ -22,7 +23,17 @@ public class PaymentManager {
 
 	}
 
-	public Payment searchByUserName(String userName) {
+	public ArrayList<Payment> searchByUserName(String userName) {
+		for (int i = 0; i < listPayment.size(); i++) {
+			Payment temp = listPayment.get(i);
+			if (temp.getUsername().equals(userName)) {
+				listSearch.add(temp);
+			}
+		}
+		return listSearch;
+	}
+
+	public Payment searchPayments(String userName) {
 		for (int i = 0; i < listPayment.size(); i++) {
 			Payment temp = listPayment.get(i);
 			if (temp.getUsername().equals(userName)) {
@@ -30,6 +41,26 @@ public class PaymentManager {
 			}
 		}
 		return null;
+	}
+
+	public Payment searchPaymentByDate(String date) {
+		for (int i = 0; i < listPayment.size(); i++) {
+			Payment temp = listPayment.get(i);
+			if (temp.getDate().equals(date)) {
+				return temp;
+			}
+		}
+		return null;
+	}
+
+	public void removePaymentByDate(String date) {
+		for (int i = 0; i < listPayment.size(); i++) {
+			Payment temp = listPayment.get(i);
+			if (temp.getDate().equals(date)) {
+				listPayment.remove(i);
+			}
+		}
+
 	}
 
 	// Getter and setter methods

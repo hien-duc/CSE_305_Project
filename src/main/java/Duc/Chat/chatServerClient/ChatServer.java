@@ -34,21 +34,19 @@ public class ChatServer {
 
         public void run() {
             try {
-                out = new PrintWriter(socket
-                        .getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket
-                        .getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String message;
 
                 while ((message = in.readLine()) != null) {
+                    System.out.println(message);
                     broadcast(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    socket
-                            .close();
+                    socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -59,6 +57,7 @@ public class ChatServer {
         private void broadcast(String message) {
             for (Socket client : clients) {
                 try {
+
                     PrintWriter clientOut = new PrintWriter(client.getOutputStream(), true);
                     clientOut.println(message);
                 } catch (IOException e) {

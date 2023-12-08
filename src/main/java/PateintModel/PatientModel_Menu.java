@@ -1,6 +1,5 @@
 package PateintModel;
 
-import javafx.scene.control.TitledPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -27,7 +26,7 @@ public class PatientModel_Menu {
     }
 
     public Icon toIcon() {
-        return new ImageIcon(("src\\main\\java\\PateintIcon\\" + icon + ".png"));
+        return new ImageIcon(getClass().getResource("/PateintIcon/" + icon + ".png"));
     }
 
     public String getIcon() {
