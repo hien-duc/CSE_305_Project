@@ -406,7 +406,7 @@ public class PaymentForm extends javax.swing.JDialog {
             String illness = txtIllness.getText();
             String medication = txtMedication.getText();
 
-            Payment payment = new Payment(name, money, insurance, method, date, time, illness, medication);
+            Payment payment = new Payment(name, money, insurance, method, date, time, illness, medication, "No");
             paymentManager.addPayment(payment);
             paymentDAO.savePayment(paymentManager.getListPayment());
             JOptionPane.showMessageDialog(rootPane, "Successfully");
